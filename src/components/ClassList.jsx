@@ -2,28 +2,28 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
-const ProductList = () => {
-    const [products, setProducts] = useState([]);
+const ClassList = () => {
+    const [classes, setClasses] = useState([]);
 
     useEffect(() => {
-        getProducts();
+        getClasses();
     }, []);
 
-    const getProducts = async () => {
-        const response = await axios.get("http://localhost:5000/products");
-        setProducts(response.data);
+    const getClasses = async () => {
+        const response = await axios.get("http://localhost:5000/classes");
+        setClasses(response.data);
     };
 
-    const deleteProduct = async (productId) => {
-        await axios.delete(`http://localhost:5000/products/${productId}`);
-        getProducts();
+    const deleteClass = async (classId) => {
+        await axios.delete(`http://localhost:5000/classes/${classId}`);
+        getClasses();
     };
 
     return (
         <div>
         <h1 className="title">Classes</h1>
         <h2 className="subtitle">List of Class</h2>
-        <Link to="/products/add" className="button is-success mb-2">
+        <Link to="/classes/add" className="button is-success mb-2">
             Add New
         </Link>
         <table className="table is-bordered is-fullwidth">
@@ -38,29 +38,29 @@ const ProductList = () => {
             </tr>
             </thead>
             <tbody>
-            {products.map((product, index) => (
-                <tr key={product.uuid}>
+            {classes.map((myClass, index) => (
+                <tr key={myClass.uuid}>
                 <td>{index + 1}</td>
-                <td>{product.name}</td>
-                <td>{product.price}</td>
-                <td>{product.price}</td>
-                <td>{product.user.name}</td>
+                <td>{myClass.classname}</td>
+                <td>{myClass.description}</td>
+                <td>{myClass.visibility}</td>
+                <td>{myClass.user.name}</td>
                 <td>
                     <Link
-                        to={`/products/edit/${product.uuid}`}
-                        className="button is-warning"
+                        to={`/classes/edit/${myClass.uuid}`}
+                        className="button is-warning mb-2"
                         >
                         View
                     </Link>
                     <Link
-                        to={`/products/edit/${product.uuid}`}
-                        className="button is-info ml-2"
+                        to={`/classes/edit/${myClass.uuid}`}
+                        className="button is-info mb-2"
                         >
                         Edit
                     </Link>
                     <button
-                        onClick={() => deleteProduct(product.uuid)}
-                        className="button is-danger ml-2"
+                        onClick={() => deleteClass(myClass.uuid)}
+                        className="button is-danger"
                         >
                         Delete
                     </button>
@@ -73,4 +73,4 @@ const ProductList = () => {
     );
 };
 
-export default ProductList;
+export default ClassList;

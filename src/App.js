@@ -8,6 +8,8 @@ import EditUser from "./pages/EditUser";
 import AddProduct from "./pages/AddProduct";
 import EditProduct from "./pages/EditProduct";
 import Classes from "./pages/Classes";
+import AddClass from "./pages/AddClass";
+import EditClass from "./pages/EditClass";
 
 function App() {
   return (
@@ -23,6 +25,8 @@ function App() {
           <Route path="/products/add" element={<AddProduct />} />
           <Route path="/products/edit/:id" element={<EditProduct />} />
           <Route path="/classes" element={<Classes />} />
+          <Route path="/classes/add" element={<AddClass />} />
+          <Route path="/classes/edit/:id" element={<EditClass />} />
         </Routes>
       </BrowserRouter>
     </div>
