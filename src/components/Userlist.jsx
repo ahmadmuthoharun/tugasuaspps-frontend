@@ -42,7 +42,7 @@ const Userlist = () => {
                             <td>{index + 1}</td>
                             <td>{user.name}</td>
                             <td>{user.email}</td>
-                            <td>{user.role}</td>
+                            <td>{user.role === 'admin' ? 'Dosen' : 'Mahasiswa'}</td>
                             <td>
                                 <Link
                                 to={`/users/edit/${user.uuid}`}

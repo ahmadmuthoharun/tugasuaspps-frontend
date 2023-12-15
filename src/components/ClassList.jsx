@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import {  useSelector } from "react-redux";
+
 
 const ClassList = () => {
     const [classes, setClasses] = useState([]);
+    const { user } = useSelector((state) => state.auth);
 
     useEffect(() => {
         getClasses();
@@ -23,9 +26,11 @@ const ClassList = () => {
         <div>
         <h1 className="title">Classes</h1>
         <h2 className="subtitle">List of Class</h2>
+        {user && user.role === "admin" && (
         <Link to="/classes/add" className="button is-success mb-2">
             Add New
         </Link>
+        )}
         <table className="table is-bordered is-fullwidth">
             <thead>
             <tr>
@@ -33,7 +38,7 @@ const ClassList = () => {
                 <th>Class Name</th>
                 <th>Description</th>
                 <th>Visibility</th>
-                <th>Created By</th>
+                <th>Dosen</th>
                 <th>Actions</th>
             </tr>
             </thead>
@@ -52,18 +57,25 @@ const ClassList = () => {
                         >
                         View
                     </Link>
+                    
+                    {user && user.role === "admin" && (
                     <Link
                         to={`/classes/edit/${myClass.uuid}`}
                         className="button is-info mb-2"
                         >
                         Edit
                     </Link>
+                    )}
+
+                    {user && user.role === "admin" && (
                     <button
                         onClick={() => deleteClass(myClass.uuid)}
                         className="button is-danger"
                         >
                         Delete
                     </button>
+                    )}
+
                 </td>
                 </tr>
             ))}

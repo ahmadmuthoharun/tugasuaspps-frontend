@@ -30,11 +30,14 @@ const Sidebar = () => {
                 <IoFolder /> Class
                 </NavLink>
             </li>
+            {user && user.role === "adminweb" && (
             <li>
                 <NavLink to={"/products"}>
                 <IoPricetag /> Products
                 </NavLink>
             </li>
+            )}
+
             </ul>
             {user && user.role === "admin" && (
             <div>

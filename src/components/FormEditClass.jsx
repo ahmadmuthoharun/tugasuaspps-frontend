@@ -2,38 +2,41 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 
-const FormEditProduct = () => {
-  const [name, setName] = useState("");
-  const [price, setPrice] = useState("");
-  const [msg, setMsg] = useState("");
-  const navigate = useNavigate();
-  const { id } = useParams();
+const FormEditClass = () => {
+    const [classname, setClassname] = useState("");
+    const [description, setDescription] = useState("");
+    const [visibility, setVisibility] = useState("");
+    const [msg, setMsg] = useState("");
+    const navigate = useNavigate();
+    const { id } = useParams();
 
   useEffect(() => {
-        const getProductById = async () => {
+        const getClassById = async () => {
         try {
             const response = await axios.get(
-            `http://localhost:5000/products/${id}`
+            `http://localhost:5000/classes/${id}`
             );
-            setName(response.data.name);
-            setPrice(response.data.price);
+            setClassname(response.data.classname);
+            setDescription(response.data.description);
+            setVisibility(response.data.visibility);
         } catch (error) {
             if (error.response) {
             setMsg(error.response.data.msg);
             }
         }
         };
-        getProductById();
+        getClassById();
     }, [id]);
 
-    const updateProduct = async (e) => {
+    const updateClass = async (e) => {
         e.preventDefault();
         try {
-        await axios.patch(`http://localhost:5000/products/${id}`, {
-            name: name,
-            price: price,
+        await axios.patch(`http://localhost:5000/classes/${id}`, {
+            classname: classname,
+            description: description,
+            visibility: visibility,
         });
-        navigate("/products");
+        navigate("/classes");
         } catch (error) {
         if (error.response) {
             setMsg(error.response.data.msg);
@@ -43,22 +46,22 @@ const FormEditProduct = () => {
 
     return (
         <div>
-        <h1 className="title">Products</h1>
-        <h2 className="subtitle">Edit Product</h2>
+        <h1 className="title">Classes</h1>
+        <h2 className="subtitle">Edit Class</h2>
         <div className="card is-shadowless">
             <div className="card-content">
             <div className="content">
-                <form onSubmit={updateProduct}>
+                <form onSubmit={updateClass}>
                 <p className="has-text-centered">{msg}</p>
                 <div className="field">
-                    <label className="label">Name</label>
+                    <label className="label">Class Name</label>
                     <div className="control">
                     <input
                         type="text"
                         className="input"
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
-                        placeholder="Product Name"
+                        value={classname}
+                        onChange={(e) => setClassname(e.target.value)}
+                        placeholder="Class Name"
                     />
                     </div>
                 </div>
@@ -68,10 +71,25 @@ const FormEditProduct = () => {
                     <input
                         type="text"
                         className="input"
-                        value={price}
-                        onChange={(e) => setPrice(e.target.value)}
-                        placeholder="Price"
+                        value={description}
+                        onChange={(e) => setDescription(e.target.value)}
+                        placeholder="Description"
                     />
+                    </div>
+                </div>
+
+                <div className="field">
+                    <label className="label">Visibility</label>
+                    <div className="control">
+                    <div className="select is-fullwidth">
+                        <select
+                        value={visibility}
+                        onChange={(e) => setVisibility(e.target.value)}
+                        >
+                        <option value="Show">Show</option>
+                        <option value="Hide">Hide</option>
+                        </select>
+                    </div>
                     </div>
                 </div>
 
@@ -90,4 +108,4 @@ const FormEditProduct = () => {
     );
 };
 
-export default FormEditProduct;
+export default FormEditClass;
