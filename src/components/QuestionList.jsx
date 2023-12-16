@@ -38,13 +38,20 @@ const QuestionList = () => {
                 <th>Question Text</th>
                 <th>Topic</th>
                 <th>Difficulty</th>
-                <th>Answer 1 (Correct)</th>
+                <th>
+                    Answer 1 
+                    <span style={{ visibility: (user && user.role === 'admin') ? 'visible' : 'hidden' }}>
+                        &nbsp;(Correct)
+                    </span>
+                </th>
                 <th>Answer 2</th>
                 <th>Answer 3</th>
                 <th>Answer 4</th>
                 <th>Answer 5</th>
                 <th>Created By</th>
+                {user && user.role === "admin" && (
                 <th>Actions</th>
+                )}
             </tr>
             </thead>
             <tbody>
@@ -53,7 +60,18 @@ const QuestionList = () => {
                 <td>{index + 1}</td>
                 <td>{question.question_text}</td>
                 <td>{question.topic}</td>
-                <td>{question.difficulty}</td>
+                <td>
+                    {question.difficulty === 'Mudah' ? (
+                        <button className="button is-success is-rounded is-small is-fullwidth">Mudah</button>
+                    ) : question.difficulty === 'Sedang' ? (
+                        <button className="button is-warning is-rounded is-small is-fullwidth">Sedang</button>
+                    ) : question.difficulty === 'Sulit' ? (
+                        <button className="button is-danger is-rounded is-small is-fullwidth">Sulit</button>
+                    ) : (
+                        // Teks atau elemen yang ingin ditampilkan jika tidak ada kondisi yang sesuai
+                        'Tidak ada informasi tingkat kesulitan'
+                    )}
+                </td>
                 <td>{question.answer_text_1}</td>
                 <td>{question.answer_text_2}</td>
                 <td>{question.answer_text_3}</td>
@@ -61,13 +79,6 @@ const QuestionList = () => {
                 <td>{question.answer_text_5}</td>
                 <td>{question.user.name}</td>
                 <td>
-                    <Link
-                        to={`/questions`}
-                        className="button is-warning mb-2"
-                        >
-                        View
-                    </Link>
-                    
                     {user && user.role === "admin" && (
                     <Link
                         to={`/questions/edit/${question.uuid}`}
