@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import { IoPerson, IoPricetag, IoHome, IoFolder, IoLogOut } from "react-icons/io5";
+import { IoPerson, IoHome, IoFolder, IoLogOut } from "react-icons/io5";
 import { useDispatch, useSelector } from "react-redux";
 import { LogOut, reset } from "../features/authSlice";
 
@@ -30,13 +30,6 @@ const Sidebar = () => {
                 <IoFolder /> Class
                 </NavLink>
             </li>
-            {user && user.role === "adminweb" && (
-            <li>
-                <NavLink to={"/products"}>
-                <IoPricetag /> Products
-                </NavLink>
-            </li>
-            )}
 
             </ul>
             {user && user.role === "admin" && (
