@@ -26,7 +26,7 @@ const Userlist = () => {
             <Link to="/users/add" className="button is-success mb-2">
                 Add New
             </Link>
-            <table className="table is-striped is-fullwidth">
+            <table className="table is-bordered is-fullwidth">
                 <thead>
                     <tr>
                         <th>No</th>

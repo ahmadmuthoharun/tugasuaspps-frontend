@@ -32,7 +32,7 @@ const Login = () => {
                 <div className="column is-4">
                 <form onSubmit={Auth} className="box">
                     {isError && <p className="has-text-centered">{message}</p>}
-                    <h1 className="title is-2">Sign In</h1>
+                    <h1 className="title is-2" style={{ textAlign: 'center' }}>Sign In</h1>
                     <div className="field">
                     <label className="label">Email</label>
                     <div className="control">
@@ -60,7 +60,7 @@ const Login = () => {
                     <div className="field mt-5">
                     <button
                         type="submit"
-                        className="button is-success is-fullwidth"
+                        className="button is-info is-fullwidth"
                     >
                         {isLoading ? "Loading..." : "Login"}
                     </button>

@@ -52,7 +52,7 @@ const ClassList = () => {
                 <td>{myClass.user.name}</td>
                 <td>
                     <Link
-                        to={`/classes/edit/${myClass.uuid}`}
+                        to={`/questions`}
                         className="button is-warning mb-2"
                         >
                         View

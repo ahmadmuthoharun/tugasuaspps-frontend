@@ -49,9 +49,9 @@ const FormAddClass = () => {
                 <div className="field">
                     <label className="label">Description</label>
                     <div className="control">
-                    <input
+                    <textarea
                         type="text"
-                        className="input"
+                        className="textarea"
                         value={description}
                         onChange={(e) => setDescription(e.target.value)}
                         placeholder="Description"

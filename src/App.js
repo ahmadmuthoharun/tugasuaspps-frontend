@@ -10,6 +10,9 @@ import EditProduct from "./pages/EditProduct";
 import Classes from "./pages/Classes";
 import AddClass from "./pages/AddClass";
 import EditClass from "./pages/EditClass";
+import Questions from "./pages/Questions";
+import AddQuestion from "./pages/AddQuestion";
+import EditQuestion from "./pages/EditQuestion";
 
 function App() {
   return (
@@ -27,6 +30,9 @@ function App() {
           <Route path="/classes" element={<Classes />} />
           <Route path="/classes/add" element={<AddClass />} />
           <Route path="/classes/edit/:id" element={<EditClass />} />
+          <Route path="/questions/" element={<Questions />} />
+          <Route path="/questions/add" element={<AddQuestion />} />
+          <Route path="/questions/edit/:id" element={<EditQuestion />} />
         </Routes>
       </BrowserRouter>
     </div>
